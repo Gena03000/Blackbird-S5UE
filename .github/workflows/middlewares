@@ -1,15 +1,31 @@
-name: Audit sécurité
+name: 🔐 Audit sécurité Node.js
+
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   audit:
+    name: 🔎 Analyse des vulnérabilités
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Install Node.js
+      - name: ⬇️ Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: 🧰 Installation de Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: npm install
-      - run: npm audit
+          cache: 'npm'
+
+      - name: 📦 Installation des dépendances
+        run: npm ci
+
+      - name: 🔍 Audit de sécurité
+        run: npm audit --audit-level=moderate
+
