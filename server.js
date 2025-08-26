@@ -36,15 +36,19 @@ app.get('/shopify/install', (req, res) => {
   if (!shop) {
     return res.status(400).send('❌ Paramètre "shop" manquant');
   }
-const installUrl = `https://${shop}/admin/oauth/authorize?...`
 
-  const apiKey = process.env.SHOPIFY_API_KEY;
-  const scopes = 'read_products,write_orders';
+  const apiKey = process.env.SHOPIFY_API_KEY; const scopes = 'read_products,write_orders'; 
   const redirectUri = `https://merle.up.railway.app/shopify/callback`;
+  const shopifyParams = {
+  client_id: apiKey,
+  scope: scopes,
+  redirect_uri: redirectUri
+};
 
-  const installUrl = `https://${shop}/admin/oauth/authorize?client_id=${apiKey}&scope=${scopes}&redirect_uri=${redirectUri}`;
-  res.redirect(installUrl);
-});
+const query = new URLSearchParams(shopifyParams).toString();
+const installUrl = `https://${shop}/admin/oauth/authorize?${query}`;
+res.redirect(installUrl);
+
 
 // Shopify endpoint
 app.get('/shopify', (req, res) => {
