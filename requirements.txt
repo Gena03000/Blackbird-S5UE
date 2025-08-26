@@ -1,0 +1,19 @@
+# 📦 Framework web léger
+flask==2.3.3
+
+# 🚀 Serveur WSGI performant pour déploiement
+gunicorn==21.2.0
+
+# 🎨 Générateur de texte ASCII (utile pour logs ou fun CLI)
+pyfiglet==0.8.post1
+
+# 🔗 Client Redis pour cache, file d’attente, etc.
+redis==5.0.1
+
+# ✅ Sécurité et compatibilité
+# Ajout recommandé pour éviter les vulnérabilités connues
+# (à inclure si tu fais du parsing ou du traitement web)
+# werkzeug==2.3.7  # version compatible avec Flask 2.3.3
+
+# 🧪 Optionnel : vérification des vulnérabilités
+# pip-audit==2.7.2  # à utiliser en dev pour scanner les dépendances
