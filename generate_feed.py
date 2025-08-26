@@ -1,3 +1,4 @@
+gunicorn blackbird:app --bind 0.0.0.0:$PORT
 import requests
 import xml.etree.ElementTree as ET
 import os
