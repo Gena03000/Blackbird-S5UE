@@ -68,4 +68,4 @@ dotenv	Variables d’environnement
 xss-clean / hpp / helmet	Sécurité middleware
 👤 Auteur
 Gena Campbell 🔗 genacampbell.shop 🐙 @Gena03000 sur GitHub
-[![🚀 Construire et déployer sur Railway](https://github.com/Gena03000/Blackbird-S5UE/actions/workflows/deploy.yml/badge.svg)](https://github.com/Gena03000/Blackbird-S5UE/actions/workflows/deploy.yml)
+
