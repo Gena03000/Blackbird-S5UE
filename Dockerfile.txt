@@ -22,7 +22,7 @@ WORKDIR /app
 COPY --from=build /app /app
 
 # 🔐 Sécurité : permissions strictes sur .env si présent
-RUN [ -f .env ] && chmod 600 .env || true
+RUN if [ -f .env ]; then chmod 600 .env; fi
 
 # 🌍 Variables d’environnement
 ENV NODE_ENV=production
