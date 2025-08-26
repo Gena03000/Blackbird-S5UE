@@ -21,9 +21,14 @@ jobs:
         run: pip install --no-cache-dir pip-audit
 
       - name: 🔍 Lancer l’audit
-        run: pip-audit --requirement requirements.txt --output-format sarif --output pip-audit-results.sarif
+        run: |
+          pip-audit \
+            --requirement requirements.txt \
+            --output-format sarif \
+            --output pip-audit-results.sarif
 
       - name: 📤 Upload des résultats SARIF
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: pip-audit-results.sarif
+
