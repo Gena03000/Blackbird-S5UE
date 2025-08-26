@@ -3,67 +3,72 @@ name: 🚀 Construire et déployer sur Railway
 on:
   push:
     branches:
-      - principal
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   build-and-deploy:
+    name: 🚧 Build & Deploy Railway
     runs-on: ubuntu-latest
+
     steps:
-      - name: 🔧 Définir le PORT par défaut
-        run: |
-          echo "PORT=${PORT:-3000}" >> $GITHUB_ENV
-
-
-
-
-
-
-      - name: ✅ Check Railway token presence
-        run: |
-          if [ -z "${{ secrets.RAILWAY_TOKEN }}" ]; then
-            echo "❌ Railway token is missing"
-            exit 1
-          fi
-
-      - name: 📦 Checkout code
+      - name: 📦 Checkout du code
         uses: actions/checkout@v4
 
-      - name: 🧰 Set up Node.js
+      - name: 🧰 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: 'npm'
 
-      - name: 🛠️ Install Railway CLI
+      - name: 🔧 Définir le PORT par défaut
+        run: echo "PORT=${PORT:-3000}" >> $GITHUB_ENV
+
+      - name: ✅ Vérification du token Railway
+        run: |
+          if [ -z "${{ secrets.RAILWAY_TOKEN }}" ]; then
+            echo "❌ Railway token manquant"
+            exit 1
+          fi
+
+      - name: 🛠️ Installer Railway CLI
         run: npm install -g @railway/cli
 
-      - name: 🔐 Login to Railway
+      - name: 🔐 Connexion à Railway
         run: echo "${{ secrets.RAILWAY_TOKEN }}" | railway login
 
-      - name: 🔗 Link to Railway project
+      - name: 🔗 Lier au projet Railway
         run: railway link d9168a4f-9d6e-482b-b876-f2bbd343fa9c
 
-      - name: 🚀 Deploy to Railway
+      - name: 🚀 Déploiement sur Railway
         run: railway up
 
   codeql-analysis:
+    name: 🔍 Analyse CodeQL
     runs-on: ubuntu-latest
     needs: build-and-deploy
+
     steps:
-      - name: 📦 Checkout code
+      - name: 📦 Checkout du code
         uses: actions/checkout@v4
 
-      - name: 🧪 Initialize CodeQL
+      - name: 🧪 Initialiser CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: python
 
-      - name: 🧠 Perform CodeQL analysis
+      - name: 🧠 Lancer l’analyse CodeQL
         uses: github/codeql-action/analyze@v3
 
-      - name: 📤 Upload SARIF results
+      - name: 📤 Upload des résultats SARIF
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: blackbird-python-results.sarif
+
 
 
 
