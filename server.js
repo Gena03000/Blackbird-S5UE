@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const express = require('express');
 const app = express();
@@ -30,6 +29,10 @@ app.get('/status', (req, res) => {
   res.send('🧶 Serveur textile actif sur Railway');
 });
 
+app.get("/api", (req, res) => {
+  res.send("Hello world");
+});
+
 // Shopify install route
 app.get('/shopify/install', (req, res) => {
   const shop = req.query.shop;
@@ -37,18 +40,19 @@ app.get('/shopify/install', (req, res) => {
     return res.status(400).send('❌ Paramètre "shop" manquant');
   }
 
-  const apiKey = process.env.SHOPIFY_API_KEY; const scopes = 'read_products,write_orders'; 
+  const apiKey = process.env.SHOPIFY_API_KEY;
+  const scopes = 'read_products,write_orders';
   const redirectUri = `https://merle.up.railway.app/shopify/callback`;
   const shopifyParams = {
-  client_id: apiKey,
-  scope: scopes,
-  redirect_uri: redirectUri
-};
+    client_id: apiKey,
+    scope: scopes,
+    redirect_uri: redirectUri
+  };
 
-const query = new URLSearchParams(shopifyParams).toString();
-const installUrl = `https://${shop}/admin/oauth/authorize?${query}`;
-res.redirect(installUrl);
-
+  const query = new URLSearchParams(shopifyParams).toString();
+  const installUrl = `https://${shop}/admin/oauth/authorize?${query}`;
+  res.redirect(installUrl);
+}); // ← cette accolade fermante manquait
 
 // Shopify endpoint
 app.get('/shopify', (req, res) => {

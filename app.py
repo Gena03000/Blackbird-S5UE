@@ -1,12 +1,9 @@
-from flask import Flask, request, jsonify
-import subprocess
+import os
 import shlex
+import subprocess
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return '🐦 Blackbird est en vol !'
 
 @app.route('/run', methods=['POST'])
 def run_command():
@@ -30,5 +27,9 @@ def run_command():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000, debug=True)
+    port = int(os.getenv("PORT", 3000))  # Tu peux changer le port ici
+    app.run(debug=True, host='0.0.0.0', port=port)
+
+
+
 
