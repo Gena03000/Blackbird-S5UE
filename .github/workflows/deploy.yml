@@ -3,7 +3,7 @@ name: 🚀 Construire et déployer sur Railway
 on:
   push:
     branches:
-      - main
+      - principal
   workflow_dispatch:
 
 permissions:
@@ -31,18 +31,18 @@ jobs:
       - name: ✅ Vérification du token Railway
         run: |
           if [ -z "${{ secrets.RAILWAY_TOKEN }}" ]; then
-            echo "❌ Railway token manquant"
+            echo "❌ Jeton Railway manquant"
             exit 1
           fi
 
-      - name: 🛠️ Installer Railway CLI
+      - name: 🛠️ Installateur Railway CLI
         run: npm install -g @railway/cli
 
       - name: 🔐 Connexion à Railway
         run: echo "${{ secrets.RAILWAY_TOKEN }}" | railway login
 
       - name: 🔗 Lier au projet Railway
-        run: railway link d9168a4f-9d6e-482b-b876-f2bbd343fa9c
+        run: railway link D9168A4F-9D6E-482B-B876-F2BBD343FA9C
 
       - name: 🚀 Déploiement sur Railway
         run: railway up
@@ -56,7 +56,7 @@ jobs:
       - name: 📦 Checkout du code
         uses: actions/checkout@v4
 
-      - name: 🧪 Initialiser CodeQL
+      - name: 🧪 Initialiseur CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: python
@@ -68,6 +68,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: blackbird-python-results.sarif
+
 
 
 
