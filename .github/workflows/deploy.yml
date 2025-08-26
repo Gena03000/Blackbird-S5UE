@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: 🔧 Définir le PORT par défaut
         run: |
-          echo "PORT=${PORT:-4000}" >> $GITHUB_ENV
+          echo "PORT=${PORT:-3000}" >> $GITHUB_ENV
 
 
 
