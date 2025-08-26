@@ -1,35 +1,37 @@
-# Étape 1 : build dans une image légère
+# 🏗️ Étape 1 : Build dans une image légère
 FROM node:18-alpine AS build
 
 WORKDIR /app
 
-# Copie des fichiers nécessaires
+# 📦 Installation des dépendances de production
 COPY package*.json ./
-RUN npm install --production
+RUN npm ci --only=production
 
+# 📁 Copie du reste des fichiers
 COPY . .
 
-# Étape 2 : exécution dans une image encore plus légère
+# 🧼 Nettoyage des fichiers inutiles (optionnel)
+RUN rm -rf tests/ docs/ *.md
+
+# 🚀 Étape 2 : Exécution dans une image ultra légère
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Copie des fichiers depuis l'étape build
+# 🔁 Copie des fichiers construits
 COPY --from=build /app /app
 
-# Sécurité : permissions strictes
-RUN chmod 600 /app/.env || true
+# 🔐 Sécurité : permissions strictes sur .env si présent
+RUN [ -f .env ] && chmod 600 .env || true
 
-# Variables d’environnement recommandées
+# 🌍 Variables d’environnement
 ENV NODE_ENV=production
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
-# Port exposé
+# 🔓 Port exposé
 EXPOSE 3000
 
-# Commande de démarrage
+# 🏁 Commande de démarrage
 CMD ["node", "server.js"]
-"scripts": {
-  "start": "node server.js"
-}
+
 
