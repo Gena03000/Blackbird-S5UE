@@ -2,7 +2,7 @@
 flask==2.3.3
 
 # 🚀 Serveur WSGI performant pour déploiement
-gunicorn==21.2.0
+gunicorn==23.0.0
 
 # 🎨 Générateur de texte ASCII (utile pour logs ou fun CLI)
 pyfiglet==0.8.post1
@@ -17,3 +17,5 @@ redis==5.0.1
 
 # 🧪 Optionnel : vérification des vulnérabilités
 # pip-audit==2.7.2  # à utiliser en dev pour scanner les dépendances
+
+#gunicorn>=23.0.0
