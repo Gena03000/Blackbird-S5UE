@@ -1,0 +1,6 @@
+authtoken: ton_token_ngrok
+
+tunnels:
+  blackbird:
+    addr: 5000
+    proto: http
