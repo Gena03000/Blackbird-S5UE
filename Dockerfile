@@ -27,6 +27,10 @@ ENV PYTHONUNBUFFERED=1
 RUN useradd -m -s /bin/bash nonroot
 USER nonroot
 
+RUN addgroup --system nonroot && \
+    adduser --system --ingroup nonroot nonroot && \
+    chown -R nonroot:nonroot /app
+
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:$PORT"]
 
 
