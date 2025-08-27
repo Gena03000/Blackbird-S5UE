@@ -22,6 +22,14 @@ def get_feed():
     data = generate_feed()
     return Response(data, mimetype="application/xml")
 
+@app.route("/health")
+def health():
+    return "OK", 200
+
+@app.route("/health")
+def health():
+    return {"status": "healthy"}, 200
+
 
 @app.route("/run-command", methods=["POST"])
 def run_command():
