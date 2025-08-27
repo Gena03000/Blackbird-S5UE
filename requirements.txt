@@ -1,3 +1,5 @@
+#gunicorn>=23.0.0
+
 # 📦 Framework web léger
 flask==2.3.3
 
@@ -17,5 +19,3 @@ redis==5.0.1
 
 # 🧪 Optionnel : vérification des vulnérabilités
 # pip-audit==2.7.2  # à utiliser en dev pour scanner les dépendances
-
-#gunicorn>=23.0.0
