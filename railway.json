@@ -3,8 +3,6 @@
     "builder": "docker"
   },
   "deploy": {
-    "startCommand": "gunicorn app:app --bind 0.0.0.0:$PORT"
-
     "restartPolicy": "always",
     "healthcheck": {
       "path": "/",
@@ -14,7 +12,8 @@
     }
   },
   "env": {
-    "NODE_ENV": "postgres:17",
-"PORT": "5000"
+    "PORT": "5000",
+    "PYTHONUNBUFFERED": "1"
   }
 }
+
