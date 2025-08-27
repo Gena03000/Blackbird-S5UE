@@ -31,5 +31,5 @@ def run_command():
 
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 3000))  # Tu peux changer le port ici
+    port = int(os.getenv("PORT", 5000))  # Tu peux changer le port ici
     app.run(debug=True, host="0.0.0.0", port=port)
