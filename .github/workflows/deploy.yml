@@ -26,7 +26,7 @@ jobs:
           cache: 'npm'
 
       - name: 🔧 Définir le PORT par défaut
-        run: echo "PORT=${PORT:-3000}" >> $GITHUB_ENV
+        run: echo "PORT=${PORT:-5000}" >> $GITHUB_ENV
 
       - name: ✅ Vérification du token Railway
         run: |
