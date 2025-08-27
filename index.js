@@ -53,10 +53,3 @@ app.post('/apps/blackbird-agent/webhook', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🎉 Agent Shopify lancé sur Railway (port ${PORT})`);
 });
-
-
-
-
-
-
-

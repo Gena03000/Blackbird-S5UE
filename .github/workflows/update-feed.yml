@@ -42,5 +42,3 @@ jobs:
           else
             git commit -m "🛍️ Mise à jour automatique du flux produit"
             git push
-
-

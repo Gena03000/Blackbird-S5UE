@@ -28,4 +28,3 @@ jobs:
 
       - name: 🔍 Audit de sécurité
         run: npm audit --audit-level=moderate
-

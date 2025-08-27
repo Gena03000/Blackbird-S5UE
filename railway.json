@@ -1,33 +1,19 @@
 {
-  "name": "blackbird",
-  "version": "1.0.0",
-  "description": "Serveur sécurisé pour l'application Blackbird",
-  "main": "shopify_/server.js",
-  "scripts": {
-    "start": "node shopify_/server.js",
-    "dev": "nodemon shopify_/server.js",
-    "build": "echo \"No build step required\"",
-    "test": "echo \"No tests defined yet\" && exit 0"
+  "build": {
+    "builder": "docker"
   },
-  "keywords": ["blackbird", "api", "express", "secure-server"],
-  "author": "TonNomIci",
-  "license": "MIT",
-  "dependencies": {
-    "axios": "^1.11.0",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-    "express-rate-limit": "^8.0.1",
-    "helmet": "^8.1.0",
-    "hpp": "^0.2.3",
-    "vite": "^6.3.5",
-    "winston": "^3.17.0",
-    "xss-clean": "^0.1.4",
-    "escape-html": "^1.0.3"
+  "deploy": {
+    "startCommand": "node server.js",
+    "restartPolicy": "always",
+    "healthcheck": {
+      "path": "/",
+      "interval": 10000,
+      "timeout": 3000,
+      "retries": 5
+    }
   },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "3000"
   }
 }
-
-

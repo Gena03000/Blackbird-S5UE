@@ -69,6 +69,3 @@ app.post('/webhook', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
   console.log(`🧶 Serveur textile actif sur ${displayUrl}`);
 });
-
-
-

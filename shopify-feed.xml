@@ -1,26 +1,2 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
-  <channel>
-    <title><![CDATA[Flux produits Gena]]></title>
-    <link>https://bnjjbc-k1.myshopify.com</link>
-    <description><![CDATA[Catalogue des produits disponibles dans la boutique Gena]]></description>
-    <language>fr</language>
-    <lastBuildDate>2025-08-26T01:20:00+02:00</lastBuildDate>
-
-    <item>
-      <g:id>10001</g:id>
-      <g:title><![CDATA[Sac à main cuir noir]]></g:title>
-      <g:description><![CDATA[Sac élégant en cuir véritable, parfait pour toutes les occasions.]]></g:description>
-      <g:link>https://bnjjbc-k1.myshopify.com/products/sac-cuir-noir</g:link>
-      <g:image_link>https://cdn.shopify.com/s/files/1/0000/0001/products/sac-cuir-noir.jpg</g:image_link>
-      <g:price>89.00 EUR</g:price>
-      <g:availability>in stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand><![CDATA[Gena]]></g:brand>
-      <g:google_product_category>Handbags</g:google_product_category>
-    </item>
-
-    <!-- Ajoute ici d'autres <item> dynamiquement via ton backend -->
-  </channel>
-</rss>
-
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0"><channel><title>Gena Campbell</title><link>https://genacampbell.myshopify.com</link></channel></rss>

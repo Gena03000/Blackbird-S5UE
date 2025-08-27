@@ -1,37 +1,15 @@
 # 🏗️ Étape 1 : Build dans une image légère
 FROM node:18-alpine AS build
+WORKDIR /app
+
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# 📦 Installation des dépendances de production
-COPY package*.json ./
-RUN npm ci --only=production
+COPY . /app
 
-# 📁 Copie du reste des fichiers
-COPY . .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# 🧼 Nettoyage des fichiers inutiles (optionnel)
-RUN rm -rf tests/ docs/ *.md
+ENV PORT=8000
 
-# 🚀 Étape 2 : Exécution dans une image ultra légère
-FROM node:18-alpine
-
-WORKDIR /app
-
-# 🔁 Copie des fichiers construits
-COPY --from=build /app /app
-
-# 🔐 Sécurité : permissions strictes sur .env si présent
-RUN if [ -f .env ]; then chmod 600 .env; fi
-
-# 🌍 Variables d’environnement
-ENV NODE_ENV=production
-ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-
-# 🔓 Port exposé
-EXPOSE 3000
-
-# 🏁 Commande de démarrage
-CMD ["node", "server.js"]
-
-
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:$PORT"]
