@@ -8,6 +8,15 @@ from generate_feed import generate_feed
 app = Flask(__name__)
 
 
+@app.route("/")
+def home():
+    return "Hello depuis Flask 🚀"
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
 @app.route("/feed", methods=["GET"])
 def get_feed():
     data = generate_feed()
@@ -35,9 +44,5 @@ def run_command():
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     port = int(os.getenv("PORT", 5000))  # Tu peux changer le port ici
     app.run(debug=True, host="0.0.0.0", port=port)
-=======
-    app.run(port=int(os.getenv("PORT", 5000)), debug=True)
->>>>>>> 6193041 (Finalisation avant rebase et push)
