@@ -1,0 +1,9 @@
+[webhooks]
+api_version = "2024-07"
+
+[[webhooks.subscriptions]]
+topics = ["orders/create"]
+uri = "/webhooks/order-create"
+
+[access_scopes]
+scopes = "write_products, read_orders"

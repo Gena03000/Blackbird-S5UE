@@ -59,11 +59,23 @@ app.get('/shopify', (req, res) => {
   res.send('🛍️ Interface Shopify Merle-noir active');
 });
 
-app.post('/webhook', (req, res) => {
-  console.log('📦 Webhook Shopify reçu');
-  res.sendStatus(200);
+app.post('/webhooks/orders/create', express.json(), (req, res) => {
+  if (!verifyShopifyWebhook(req, process.env.SHOPIFY_SECRET)) {
+    return res.status(401).send('Unauthorized');
+  }
+
+  const order = req.body;
+  console.log('Nouvelle commande reçue :', order);
+
+  // Traitement métier ici (ex: sauvegarde, email, etc.)
+  res.status(200).send('OK');
 });
+
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`🧶 Serveur textile actif sur ${displayUrl}`);
+});
+
+app.get('/ping', (req, res) => {
+  res.send('pong 🚀');
 });
