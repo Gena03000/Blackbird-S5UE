@@ -48,3 +48,7 @@ else
       ;;
   esac
 fi
+# Créez le répertoire wwwroot avec les autorisations appropriées
+RUN mkdir -p /app/wwwroot && \
+    chown -R node:node /app/wwwroot && \
+    chmod 755 /app/wwwroot
