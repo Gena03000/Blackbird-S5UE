@@ -4,6 +4,7 @@ WORKDIR /js
 COPY package*.json ./
 RUN npm install --omit=dev
 COPY . .
+COPY pg.sh /app/pg.sh
 
 # Étape 2 : Build Python
 FROM python:3.11-slim
