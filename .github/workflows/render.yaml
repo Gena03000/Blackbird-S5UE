@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: blackbird-s5ue
+    env: node
+    rootDir: .
+    buildCommand: npm install
+    startCommand: node server.js
+    plan: starter
+    autoDeploy: true
+    envVars:
+      - key: SHOPIFY_API_KEY
+        sync: false
+      - key: SHOPIFY_SECRET
+        sync: false
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: DISCORD_CHANNEL_ID
+        sync: false
+      - key: NODE_ENV
+        value: production
+    disk:
+      name: blackbird-data
+      mountPath: /data
+      sizeGB: 1
